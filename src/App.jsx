@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { getAllNFTs, isWallectConnected } from './Blockchain.Services'
 import Alert from './components/Alert'
 import Artworks from './components/Artworks'
-import CreateNFT from './components/CreateNFT'
+import CreateNFT3 from './components/CreateNFT3'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Hero from './components/Hero'
@@ -26,7 +26,7 @@ const App = () => {
       </div>
       <Artworks />
       <Transactions />
-      <CreateNFT />
+      <CreateNFT3 />
       <ShowNFT />
       <UpdateNFT />
       {/* <About /> */}
