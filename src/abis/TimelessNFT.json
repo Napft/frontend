@@ -32861,30 +32861,6 @@
       "links": {},
       "address": "0x074e58e1c38878ceDd05bEf5C657011eA87360E0",
       "transactionHash": "0xe6001367d52594d7c0d6e3c8072601352faaa998307dc5d444b78bd11b98e51a"
-    },
-    "31337": {
-      "events": {},
-      "links": {},
-      "address": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
-      "transactionHash": "0xe38cf30bdc9909f15dff0a163e6dcd70d94685b49a44021f962647a51a9fadec"
-    },
-    "1666713173294": {
-      "events": {},
-      "links": {},
-      "address": "0xCfEB869F69431e42cdB54A4F4f105C19C080A601",
-      "transactionHash": "0xecbbd809d41f040bd4c1eb0266b7d14afddaea6f73e06a6284bcad2b25504ebb"
-    },
-    "1666788200934": {
-      "events": {},
-      "links": {},
-      "address": "0xCfEB869F69431e42cdB54A4F4f105C19C080A601",
-      "transactionHash": "0xecbbd809d41f040bd4c1eb0266b7d14afddaea6f73e06a6284bcad2b25504ebb"
-    },
-    "1666884526227": {
-      "events": {},
-      "links": {},
-      "address": "0xCfEB869F69431e42cdB54A4F4f105C19C080A601",
-      "transactionHash": "0xecbbd809d41f040bd4c1eb0266b7d14afddaea6f73e06a6284bcad2b25504ebb"
     }
   },
   "schemaVersion": "3.4.10",
