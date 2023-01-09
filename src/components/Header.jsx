@@ -21,9 +21,9 @@ const Header = () => {
         items-center flex-initial"
       >
         <li className="mx-4 cursor-pointer"><Link to='/'>Home</Link></li>
-        <li className="mx-4 cursor-pointer">Marketplace</li>
+        <li className="mx-4 cursor-pointer"><Link to='/marketplace'>MarketPlace</Link></li>
         <li className="mx-4 cursor-pointer"><Link to='/about'>About Us</Link></li>
-        <li className="mx-4 cursor-pointer">Personal Page</li>
+        <li className="mx-4 cursor-pointer"><Link to='/personalpage'>Personal Page</Link></li>
       </ul>
 
       {connectedAccount ? (

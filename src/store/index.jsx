@@ -1,5 +1,7 @@
 import { createGlobalState } from 'react-hooks-global-state'
 
+
+// State
 const { setGlobalState, useGlobalState, getGlobalState } = createGlobalState({
   modal: 'scale-0',
   updateModal: 'scale-0',
@@ -11,8 +13,10 @@ const { setGlobalState, useGlobalState, getGlobalState } = createGlobalState({
   nfts: [],
   transactions: [],
   contract: null,
+  nftDetailsList : [],
 })
 
+// Functions
 const setAlert = (msg, color = 'green') => {
   setGlobalState('loading', false)
   setGlobalState('alert', { show: true, msg, color })

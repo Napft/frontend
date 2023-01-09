@@ -45,6 +45,7 @@ Blockchain Creative Labs (BCL) partnered with The Masked Singer to launch The Ma
         
         <Header></Header>
     </section>
+
   )
 }
 
