@@ -1,0 +1,19 @@
+.mygrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-gap: 12px;
+}
+
+.myitem {
+    min-height: 200px;
+    background-color: #eee;
+}
+
+.buybutton {
+    padding: 10px;
+    width: 200px;
+    background-color: #eeeeee88;
+    border-radius: 10px;
+    border-color: black;
+    border-width: 2px;
+}
