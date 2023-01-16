@@ -9,24 +9,24 @@ import PersonalPage from './pages/PersonalPage'
 
 const router = createBrowserRouter([
   {
-    path:"/",
+    path: "/",
     element: <App />,
   },
   {
-    path:"about",
+    path: "about",
     element: <About />,
   },
   {
-    path:"marketplace",
+    path: "marketplace",
     element: <MarketPlace />,
   },
   {
-    path:"personalpage",
+    path: "personalpage",
     element: <PersonalPage />,
   },
 ])
 
 ReactDOM.render(
-  <RouterProvider router={router}/>,
+  <RouterProvider router={router} />,
   document.getElementById('root')
 )
