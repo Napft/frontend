@@ -9,6 +9,7 @@ import { getContract } from "../Blockchain.Services";
 
 const PersonalPage = (props) => {
     const connectedAccount = getGlobalState('connectedAccount');
+    // console.log(connectedAccount);
     const [nftDetailsList, setNftDetailsList] = useState([])
     // too get and set the contract to "myContract" variable
     useEffect(() => {

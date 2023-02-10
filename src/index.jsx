@@ -6,6 +6,7 @@ import App from './App'
 import About from './pages/About'
 import MarketPlace from './pages/MarketPlace'
 import PersonalPage from './pages/PersonalPage'
+import NftDetailPage from './pages/NftDetailPage'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "personalpage",
     element: <PersonalPage />,
+  },
+  {
+    path: "/nft-detail-page/:tokenid",
+    element: <NftDetailPage />,
   },
 ])
 

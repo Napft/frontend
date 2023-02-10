@@ -1,33 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { getContract } from '../Blockchain.Services';
+import { getAlchemyContract } from '../Blockchain.Services';
 import Header from '../components/Header'
-import Hero from '../components/Hero'
 import Footer from '../components/Footer';
 import NftDetailCard from '../components/NftDetailCard';
-import './MarketPlace.css'
 import { setGlobalState, useGlobalState, getGlobalState } from '../store'
+import './MarketPlace.css'
 
 
 const MarketPlace = (props) => {
-    const [myContract, setMyContract] = useState({});
     const [nftDetailsList, setNftDetailsList] = useState([])
     // too get and set the contract to "myContract" variable
     useEffect(() => {
         async function helloContract() {
-            const val = await getContract()
-            setMyContract(val)
-            const noOfNFTs = await val.methods.GetCurrentToken().call();
-            // console.log(noOfNFTs);
+            const val = await getAlchemyContract()
+            const noOfNFTs = await val.GetCurrentToken();
             let tempList = [];
             for (let i = noOfNFTs; i >= 5; i--) {
-                let nftDetail = await val.methods.GetNFTDetails(i).call();
-                nftDetail.tokenId = i
-                // console.log(nftDetail);
-                tempList.push(nftDetail);
+                let nftDetail = await val.GetNFTDetails(i);
+                console.log(nftDetail);
+                tempList.push({...nftDetail,tokenId:i});
             }
+            console.log(tempList);
             setGlobalState('nftDetailsList', tempList);
             setNftDetailsList(tempList);
         }
+        // helloContract();
         const helloList = getGlobalState('nftDetailsList');
         if (helloList.length == 0) {
             helloContract();
