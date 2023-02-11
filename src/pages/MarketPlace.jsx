@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import NftDetailCard from '../components/NftDetailCard';
 import { setGlobalState, useGlobalState, getGlobalState } from '../store'
 import './MarketPlace.css'
-
+import axios from 'axios';
 
 const MarketPlace = (props) => {
     const [nftDetailsList, setNftDetailsList] = useState([])
@@ -14,15 +14,21 @@ const MarketPlace = (props) => {
         async function helloContract() {
             const val = await getAlchemyContract()
             const noOfNFTs = await val.GetCurrentToken();
-            let tempList = [];
-            for (let i = noOfNFTs; i >= 5; i--) {
-                let nftDetail = await val.GetNFTDetails(i);
-                console.log(nftDetail);
-                tempList.push({...nftDetail,tokenId:i});
-            }
-            console.log(tempList);
-            setGlobalState('nftDetailsList', tempList);
-            setNftDetailsList(tempList);
+            const online_url = "https://napft-backend.vercel.app/api/nft/"
+            axios.get(online_url, { params: { start: 1, end: noOfNFTs } }).then(res => {
+                const nfts_lst = res.data.reverse();
+                console.log(nfts_lst);
+                setGlobalState('nftDetailsList', nfts_lst);
+                setNftDetailsList(nfts_lst);
+                // console.log("Success getting Data from MoongoDB through Express server",res);
+            }).catch(err => {
+                // console.log("Error getting Data from MoongoDB through Express server",err);
+            })
+            // for (let i = noOfNFTs; i >= noOfNFTs - 5; i--) {
+            //     let nftDetail = await val.GetNFTDetails(i);
+            //     console.log(nftDetail);
+            //     tempList.push({...nftDetail,tokenId:i});
+            // }
         }
         // helloContract();
         const helloList = getGlobalState('nftDetailsList');

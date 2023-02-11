@@ -63,7 +63,6 @@ const CreateNFT = () => {
   };
   //4. (Handle Submission) Submit button onCLick Event Handler
   const handleSubmission = async (e) => {
-    // console.log("Pinning 1");
     e.preventDefault();
     if (!title || !price || !description) return;
 
@@ -81,7 +80,6 @@ const CreateNFT = () => {
     formData.append("pinataOptions", options);
 
     try {
-      // console.log("Pinning 2");
       const res = await axios.post(
         "https://api.pinata.cloud/pinning/pinFileToIPFS",
         formData,
@@ -98,8 +96,10 @@ const CreateNFT = () => {
       // ** Completed Uploading to the Pinata and Got the Hash Value
 
       const IpfsHash = res.data.IpfsHash;
-      const tokenID = await mintNFT2({IpfsHash,price});
-      console.log(tokenID)
+      // console.log("Hello from Create NFT.");
+      // console.log("Create NFT: ",{IpfsHash,price,title,description});
+
+      const tokenID = await mintNFT2({IpfsHash,price,title:title,description:description});
     } catch (error) {
       console.log(error);
       setAlert("Minting failed...", "red");
