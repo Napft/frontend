@@ -10,4 +10,4 @@ Here find:
 
 [linkedIn](https://www.linkedin.com/company/89975282)
 
-[discord](https://discord.gg/9zJ8C4FK)
+
