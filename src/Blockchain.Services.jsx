@@ -128,45 +128,51 @@ const getContract = async () => {
   return web3Contract;
 }
 
-const mintNFT2 = async ({ price, IpfsHash, title, description }) => {
+const mintNFT2 = async ({ price, IpfsHash, title="My NFT title", description="Some Description...." }) => {
   try {
     const CONTRACT_ADDRESS = '0xA149eae19266e92aC3060DA3827013164417adE1';
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     // console.log(provider);
     const NFT = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
-    const tokenId = await NFT.creatToken(IpfsHash, ethers.utils.parseEther(`${price}`))
-    console.log("tokenID :",tokenId)
+    const tx = await NFT.creatToken(IpfsHash, ethers.utils.parseEther(`${price}`))
+    // console.log("Transaction :",tx)
+    const rc = await tx.wait(); // 0ms, as tx is already confirmed
+    const event = rc.events.find(event => event.event === 'Transfer');
+    const [from, to, value] = event.args;
+    // value is basically token id of latest transaction.
+    console.log(from, to, value);
 
     // Uploading to the Backend
-    // const new_nft = {
-    //   IPFS_hash: IpfsHash,
-    //   NFT_token_ID: tokenId,
-    //   title: title,
-    //   price: price,
-    //   description: description,
-    //   primary_category: "uncategorized",
-    //   tags: [],
-    //   votes: 0,
-    //   transaction_history: [],
-    //   creator_metamask_id: `${getGlobalState('connectedAccount')}`,
-    //   owner_metamask_id: `${getGlobalState('connectedAccount')}`,
-    //   price_timeline: [],
-    //   trend_number: Math.floor(Math.random() * 100),
-    //   image_feature_representation: [],
-    //   date_created: Date(),
-    //   media_type: 'image',
-    //   view_count: 0,
-    //   comments: [],
-    // };
-    // console.log("New NFT:",new_nft)
-    // const online_url = "https://napft-backend.vercel.app/api/nft/"
-    // axios.post(online_url, new_nft).then((responce) => {
-    //   console.log("Success", responce);
-    // }).catch((error) => {
-    //   console.log("Error", error);
-    // })
-    return tokenId
+    const new_nft = {
+      IPFS_hash: IpfsHash,
+      NFT_token_ID: parseInt((value["_hex"]),16),
+      title: title,
+      price: price,
+      description: description,
+      primary_category: "uncategorized",
+      tags: [],
+      votes: 0,
+      transaction_history: [],
+      creator_metamask_id: `${getGlobalState('connectedAccount')}`,
+      owner_metamask_id: `${getGlobalState('connectedAccount')}`,
+      price_timeline: [],
+      trend_number: Math.floor(Math.random() * 100),
+      image_feature_representation: [],
+      date_created: Date(),
+      media_type: 'image',
+      view_count: 0,
+      comments: [],
+    };
+    console.log("New NFT:",new_nft)
+    
+    const online_url = "https://napft-backend.vercel.app/api/nft/"
+    axios.post(online_url, new_nft).then((responce) => {
+      console.log("Success", responce);
+    }).catch((error) => {
+      console.log("Error", error);
+    })
+    return value
   } catch (error) {
     console.log(error);
   }
