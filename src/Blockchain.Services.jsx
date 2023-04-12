@@ -22,8 +22,6 @@ const getEtheriumContract = async () => {
   }
 }
 
-
-
 const connectWallet = async () => {
   try {
     if (!ethereum) return alert('Please install Metamask')
@@ -119,6 +117,17 @@ const getAlchemyContract = async () => {
   return alchemy_contract;
 }
 
+const get_NFT_details_from_MongoDB = async ({ start, end }) => {
+  const online_url = "https://napft-backend.vercel.app/api/nft/";
+  const result = await axios.get(online_url, { params: { start: start, end: end } }).then(res => {
+    // console.log("get from Mongo",res.data);
+    return res.data;
+  }).catch(err => {
+    console.log(`Error getting NFT Details from MongoDB ${start}-${end}`);
+  });
+  return result;
+}
+
 const getContract = async () => {
   await connectWallet()
   // const abi = [{ "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "approved", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "operator", "type": "address" }, { "indexed": false, "internalType": "bool", "name": "approved", "type": "bool" }], "name": "ApprovalForAll", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "from", "type": "address" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "price", "type": "uint256" }], "name": "Buy", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "creator", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "indexed": true, "internalType": "string", "name": "tokenURI", "type": "string" }], "name": "Mint", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "from", "type": "address" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "Transfer", "type": "event" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "GetCreatorOfNft", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "GetCurrentToken", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "GetNFTDetails", "outputs": [{ "internalType": "address", "name": "creator", "type": "address" }, { "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "uint256", "name": "price", "type": "uint256" }, { "internalType": "string", "name": "IpfsHash", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "GetNftPrice", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "GetTransactionHistory", "outputs": [{ "internalType": "address[]", "name": "", "type": "address[]" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "user", "type": "address" }], "name": "MyTotalNft", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "internalType": "uint256", "name": "price", "type": "uint256" }], "name": "UpdateNftPrice", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "approve", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }], "name": "balanceOf", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "buy", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [{ "internalType": "string", "name": "tokenURI", "type": "string" }, { "internalType": "uint256", "name": "price", "type": "uint256" }], "name": "creatToken", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "getApproved", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "address", "name": "operator", "type": "address" }], "name": "isApprovedForAll", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "name", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "ownerOf", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "safeTransferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "internalType": "bytes", "name": "data", "type": "bytes" }], "name": "safeTransferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "operator", "type": "address" }, { "internalType": "bool", "name": "approved", "type": "bool" }], "name": "setApprovalForAll", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }], "name": "supportsInterface", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "symbol", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "tokenURI", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "transferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "withdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" }]
@@ -128,7 +137,7 @@ const getContract = async () => {
   return web3Contract;
 }
 
-const mintNFT2 = async ({ price, IpfsHash, title="My NFT title", description="Some Description...." }) => {
+const mintNFT2 = async ({ price, IpfsHash, title = "My NFT title", description = "Some Description...." }) => {
   try {
     const CONTRACT_ADDRESS = '0xA149eae19266e92aC3060DA3827013164417adE1';
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -146,7 +155,7 @@ const mintNFT2 = async ({ price, IpfsHash, title="My NFT title", description="So
     // Uploading to the Backend
     const new_nft = {
       IPFS_hash: IpfsHash,
-      NFT_token_ID: parseInt((value["_hex"]),16),
+      NFT_token_ID: parseInt((value["_hex"]), 16),
       title: title,
       price: price,
       description: description,
@@ -164,8 +173,8 @@ const mintNFT2 = async ({ price, IpfsHash, title="My NFT title", description="So
       view_count: 0,
       comments: [],
     };
-    console.log("New NFT:",new_nft)
-    
+    console.log("New NFT:", new_nft)
+
     const online_url = "https://napft-backend.vercel.app/api/nft/"
     axios.post(online_url, new_nft).then((responce) => {
       console.log("Success", responce);
@@ -195,6 +204,27 @@ const buyNFT = async (tokenId) => {
 
 
 
+// AUTHENTICATION RELATED
+/// Signing a Message using Metamask.
+const signMessage = async (message,account) => {
+  const web3 = new Web3(window.ethereum);
+  return (await web3.eth.personal.sign(message,account));
+}
+/// Complete Authentication using Metamask with ExpressJS Backend.
+const authenticate = async () => {
+  let account = getGlobalState("connectedAccount");
+  if(account !== ""){
+    const signature = signMessage("Hello",account);
+    console.log(signature);
+  }
+}
+
+
+
+
+
+
+
 
 
 
@@ -202,6 +232,8 @@ const buyNFT = async (tokenId) => {
 
 
 export {
+  signMessage,
+  authenticate,
   getAllNFTs,
   connectWallet,
   mintNFT2,
@@ -210,4 +242,5 @@ export {
   isWallectConnected,
   getContract,
   getAlchemyContract,
+  get_NFT_details_from_MongoDB,
 }
