@@ -47,7 +47,11 @@ const MyChip = React.memo(({ name, data }) => {
 
 // Main component
 const NFTDetailSection = ({ nftDetail }) => {
-  const img_url = `${IPFS_endpoint}/${nftDetail.IPFS_hash}`;
+  const [imageSrc, setImageSrc] = React.useState(`${IPFS_endpoint}/${nftDetail.IPFS_hash}`);
+  const fallbackImageSrc = "../assets/nft_placeholder.jpg";
+  const handleImageError = () => {
+    setImageSrc(fallbackImageSrc);
+  };
   const date = new Date(nftDetail.section_basic_info.date_created);
   const options = {
     day: "2-digit",
@@ -81,7 +85,7 @@ const NFTDetailSection = ({ nftDetail }) => {
         }}
       >
         <img
-          src={img_url}
+          src={imageSrc}
           alt=""
           style={{
             height: "100%",
@@ -90,11 +94,7 @@ const NFTDetailSection = ({ nftDetail }) => {
             userSelect: "none",
             border: "none",
           }}
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null; // prevents looping
-            currentTarget.src =
-              "http://www.lyon-ortho-clinic.com/files/cto_layout/img/placeholder/book.jpg";
-          }}
+          onError={handleImageError}
         />
       </div>
       <div
