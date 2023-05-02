@@ -1,5 +1,4 @@
 import React from 'react';
-import { buyNFT } from '../Blockchain.Services';
 import { getGlobalState } from '../store';
 import { ethers } from 'ethers';
 

@@ -8,8 +8,8 @@ Chart.register(CategoryScale);
 
 
 
-const NFTChartSection = ({ data }) => {
-  // data = [
+const NFTChartSection = ({ timeline }) => {
+  // const data = [
   //   { x: "2010-01-01", y: 10 },
   //   { x: "2011-01-01", y: 20 },
   //   { x: "2012-01-01", y: 25 },
@@ -19,20 +19,22 @@ const NFTChartSection = ({ data }) => {
   //   { x: "2017-01-01", y: 30 },
   //   { x: "2018-01-01", y: 35 },
   //   { x: "2019-01-01", y: 40 },
-  //   { x: "2020-01-01", y: 34 },
-  //   { x: "2021-01-01", y: 31 },
-  //   { x: "2022-01-01", y: 49 },
-  //   { x: "2023-01-01", y: 52 },
-  //   { x: "2024-01-01", y: 53 },
-  //   { x: "2025-01-01", y: 58 },
-  //   { x: "2026-01-01", y: 62 },
-  //   { x: "2027-01-01", y: 61 },
-  //   { x: "2028-01-01", y: 67 },
   // ];
+  let data;
+  timeline.sort((a, b) => {
+    return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
+  });
+  const date_options = {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    separator: "-",
+  };
+  console.log(timeline);
+  data = timeline.map(ele=>({y:ele.price,x:(new Date(ele.timestamp)).toLocaleDateString("en-GB", date_options).replace(/\//g,"-")}))
   const yls = data.map(a=>a.y);
   const mn = (yls.reduce((a, b) => a + b, 0) / yls.length)/3;
   const options = {
-
     scales: {
       x: {
         ticks: {

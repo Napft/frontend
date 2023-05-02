@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { setGlobalState, getGlobalState, setAlert } from '../store';
-import { signMessage } from '../Blockchain.Services';
 
 const Comment = ({cmt}) => {
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
