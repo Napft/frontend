@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 import './index.css'
 import App from './App'
 import About from './pages/About'
-import MarketPlace from './pages/MarketPlace'
+import MarketPlacePage from './pages/MarketPlacePage'
 import PersonalPage from './pages/PersonalPage'
 import NftDetailPage from './pages/NftDetailPage'
 
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
   },
   {
     path: "marketplace",
-    element: <MarketPlace />,
+    element: <MarketPlacePage />,
   },
   {
     path: "personalpage",
