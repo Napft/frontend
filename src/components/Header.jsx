@@ -1,10 +1,10 @@
-import Logo from "../assets/logo.png";
-import { connectWallet } from "../utils/blockchain_services";
-import { useGlobalState, truncate } from "../store";
-import { Link } from "react-router-dom";
+import Logo from '../assets/logo.png';
+import { connectWallet } from '../utils/blockchain_services';
+import { useGlobalState, truncate } from '../store';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const [connectedAccount] = useGlobalState("connectedAccount");
+  const [connectedAccount] = useGlobalState('connectedAccount');
   return (
     <nav className="w-4/5 flex md:justify-center justify-between items-center py-4 mx-auto">
       <div className="md:flex-[0.5] flex-initial justify-center items-center">
@@ -12,7 +12,7 @@ const Header = () => {
       </div>
       <ul
         className="md:flex-[0.5] text-white md:flex hidden list-none flex-row justify-between items-center flex-initial"
-        style={{ marginRight: "40px" }}
+        style={{ marginRight: '40px' }}
       >
         <li className="mx-4 cursor-pointer">
           <Link to="/">Home</Link>
