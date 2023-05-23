@@ -1,29 +1,45 @@
+// Importing Libraries
+/// Core standard libraries
+import { useState } from 'react';
+import { FaTimes } from 'react-icons/fa';
+import { create } from 'ipfs-http-client';
+import axios from 'axios';
+/// Custome code components
 import {
   useGlobalState,
   setGlobalState,
   setLoadingMsg,
   setAlert,
-} from "../store";
-import { useState } from "react";
-import { FaTimes } from "react-icons/fa";
-import { create } from "ipfs-http-client";
-import { mintNFT2 } from "../utils/blockchain_services.js";
-import axios from "axios";
+} from '../store';
+import { mintNFT2 } from '../utils/blockchain_services.js';
 
+// Main Component
+/*
+Component - Doc :
+Component structure :
+Form fields :
+1. [ ] <input type="text"> (text) image
+2. [ ] <input> (text) title
+3. [ ] <input> (number) price
+4. [ ] <textarea> (text) description
+5. [ ] <text> (text) tags {format : Comma seperated values}
+6. [ ] <input> 
 
-// CreateNFT Component
+*/
 const CreateNFT = () => {
-  // Temporary Variables Of the Component
-  const [modal] = useGlobalState("modal");
-  // Form Fields Data
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
-  const [fileUrl, setFileUrl] = useState("");
+  // Reading Global State
+  const [modal] = useGlobalState('modal');
+  // Component State Variables
+  /// Form Fields
+  const [title, setTitle] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
+  const [fileUrl, setFileUrl] = useState('');
   const [imgBase64, setImgBase64] = useState(null);
+  const [tags, setTags] = useState('');
 
-  // Local Helper functions of the function
-  // 1. Image Change Event Handler
+  // Local Helper functions
+  /// 1. Image Change Event Handler
   const change_image = async (e) => {
     const reader = new FileReader();
     if (e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
@@ -33,69 +49,23 @@ const CreateNFT = () => {
       setFileUrl(e.target.files[0]);
     };
   };
-  //2. CLose Model Butten onCLick Event Handler
+  /// 2. CLose Model Butten onCLick Event Handler
   const close_modal = () => {
-    setGlobalState("modal", "scale-0");
+    setGlobalState('modal', 'scale-0');
     reset_form();
   };
-  //3. To reset the fields of the form
+  /// 3. To reset the fields of the form
   const reset_form = () => {
-    setFileUrl("");
+    setFileUrl('');
     setImgBase64(null);
-    setTitle("");
-    setPrice("");
-    setDescription("");
+    setTitle('');
+    setPrice('');
+    setDescription('');
   };
-  //4. (Handle Submission) Submit button onCLick Event Handler
+  /// 4. (Handle Submission) Submit button onCLick Event Handler
   const handle_submission = async (e) => {
     e.preventDefault();
     if (!title || !price || !description) return;
-    // console.log(price);
-    // console.log(title);
-    // console.log(description);
-
-
-
-
-    // setGlobalState("modal", "scale-0");
-    // setGlobalState("loading", { show: true, msg: "Uploading IPFS data..." });
-
-    // const formData = new FormData();
-    // formData.append("file", fileUrl);
-    // const metadata = JSON.stringify({
-    //   name: title,
-    //   keyvalues: { price: price, description: description },
-    // });
-    // formData.append("pinataMetadata", metadata);
-    // const options = JSON.stringify({ cidVersion: 0 });
-    // formData.append("pinataOptions", options);
-
-    // try {
-    //   const res = await axios.post(
-    //     "https://api.pinata.cloud/pinning/pinFileToIPFS",
-    //     formData,
-    //     {
-    //       maxBodyLength: "Infinity",
-    //       headers: {
-    //         "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
-    //         pinata_api_key: "876f96d717a13c38c251",
-    //         pinata_secret_api_key:
-    //           "e8f069ef36868569842dc969b0288d321477816c11baff0e10a0a4888c32edb4",
-    //       },
-    //     }
-    //   );
-    //   const IpfsHash = res.data.IpfsHash;
-    //   const tokenID = await mintNFT2({
-    //     IpfsHash,
-    //     price,
-    //     title: title,
-    //     description: description,
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    //   setAlert("Minting failed...", "red");
-    // }
-    // setGlobalState("loading", { show: false });
   };
 
   return (
@@ -104,7 +74,6 @@ const CreateNFT = () => {
     >
       <div className="bg-[rgb(21,28,37)] shadow-xl shadow-[#e32970] rounded-xl w-11/12 md:w-2/5 h-7/12 p-6">
         <div className="flex flex-col">
-          {/* Close Button */}
           <div className="flex flex-row justify-between items-center">
             <p className="font-semibold text-gray-400">Add NFT</p>
             <button
@@ -123,12 +92,13 @@ const CreateNFT = () => {
                 className="h-full w-full object-cover cursor-pointer"
                 src={
                   imgBase64 ||
-                  "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80"
+                  'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80'
                 }
               />
             </div>
           </div>
-          {/* Input Field to choose NFT Image  */}
+          {/* ============================================================================================================================================================================================= */}
+          {/* Form field 1 (File): Input Field to choose NFT Image  */}
           <div className="flex flex-row justify-between items-center bg-gray-800 rounded-xl mt-5">
             <label className="block">
               <span className="sr-only">Choose profile photo</span>
@@ -141,7 +111,7 @@ const CreateNFT = () => {
               />
             </label>
           </div>
-          {/* Input Field = Title */}
+          {/* Form field 2 (text):  Title */}
           <div className="flex flex-row justify-between items-center bg-gray-800 rounded-xl mt-5">
             <input
               className="block w-full text-sm text-slate-500 bg-transparent border-0 focus:outline-none focus:ring-0"
@@ -153,7 +123,7 @@ const CreateNFT = () => {
               required
             />
           </div>
-          {/* Input Field = Ammount*/}
+          {/* Form field 3 (number) : Ammount*/}
           <div className="flex flex-row justify-between items-center bg-gray-800 rounded-xl mt-5">
             <input
               className="block w-full text-sm text-slate-500 bg-transparent border-0 focus:outline-none focus:ring-0"
@@ -167,7 +137,18 @@ const CreateNFT = () => {
               required
             />
           </div>
-          {/* Input Field = Description */}
+          {/* Form field 4 (text):  Tags */}
+          <div className="flex flex-row justify-between items-center bg-gray-800 rounded-xl mt-5">
+            <input
+              className="block w-full text-sm text-slate-500 bg-transparent border-0 focus:outline-none focus:ring-0"
+              type="text"
+              name="tags"
+              placeholder="Tags"
+              onChange={(e) => setTags(e.target.value)}
+              value={tags}
+            />
+          </div>
+          {/* Form field 4 (text) : Description */}
           <div className="flex flex-row justify-between items-center bg-gray-800 rounded-xl mt-5">
             <textarea
               className="block w-full text-sm resize-none text-slate-500 bg-transparent border-0 focus:outline-none focus:ring-0 h-20"
