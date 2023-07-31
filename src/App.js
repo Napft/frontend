@@ -4,16 +4,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Homepage from './pages/Homepage';
 import Navbar from './components/Navbar';
+import Marketplace from './pages/Marketplace';
 
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-          <Navbar/>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-          </Routes>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/marketplace" element={<Marketplace/>} />
+        </Routes>
       </BrowserRouter>
     </div>
   );

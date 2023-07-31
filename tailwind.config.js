@@ -1,12 +1,12 @@
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       // You can add customizations to the default theme here
       // For example, to add a new color:
       colors: {
-        primary: "#FF0000", // Replace with your desired color
+        primary: '#FF0000', // Replace with your desired color
       },
     },
   },
