@@ -5,6 +5,7 @@ import './App.css';
 import Homepage from './pages/Homepage';
 import Navbar from './components/Navbar';
 import Marketplace from './pages/Marketplace';
+import Connect from './pages/ConnectWallet';
 
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/marketplace" element={<Marketplace/>} />
+          <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/connectwallet" element={<Connect />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -4,6 +4,7 @@ import React, { useState, Fragment } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import nftImg from "../assets/dummyNft.jpeg"
 
 import {
   ChevronDownIcon,
@@ -107,8 +108,7 @@ const products = [
     id: 1,
     name: "Basic Tee",
     href: "#",
-    imageSrc:
-      "https://media.nft.crypto.com/45f919c0-975e-4cde-9760-e4f7c54772f5/original.jpeg?d=sm-cover",
+    imageSrc: require("../assets/n-1.jpeg"),
     imageAlt: "Front of men's Basic Tee in black.",
     price: "$35",
     color: "Black",
@@ -117,8 +117,7 @@ const products = [
     id: 2,
     name: "Basic Tee",
     href: "#",
-    imageSrc:
-      "https://media.nft.crypto.com/45f919c0-975e-4cde-9760-e4f7c54772f5/original.jpeg?d=sm-cover",
+    imageSrc: require("../assets/n-2.jpeg"),
     imageAlt: "Front of men's Basic Tee in black.",
     price: "$35",
     color: "Black",
@@ -127,89 +126,57 @@ const products = [
     id: 3,
     name: "Basic Tee",
     href: "#",
-    imageSrc:
-      "https://media.nft.crypto.com/45f919c0-975e-4cde-9760-e4f7c54772f5/original.jpeg?d=sm-cover",
+    imageSrc: require("../assets/n-3.jpeg"),
     imageAlt: "Front of men's Basic Tee in black.",
     price: "$35",
     color: "Black",
   },
   {
-    id: 3,
+    id: 4,
     name: "Basic Tee",
     href: "#",
-    imageSrc:
-      "https://media.nft.crypto.com/45f919c0-975e-4cde-9760-e4f7c54772f5/original.jpeg?d=sm-cover",
+    imageSrc: require("../assets/n-4.jpeg"),
     imageAlt: "Front of men's Basic Tee in black.",
     price: "$35",
     color: "Black",
   },
   {
-    id: 3,
+    id: 5,
     name: "Basic Tee",
     href: "#",
-    imageSrc:
-      "https://media.nft.crypto.com/45f919c0-975e-4cde-9760-e4f7c54772f5/original.jpeg?d=sm-cover",
-    imageAlt: "Front of men's Basic Tee in black.",
+    imageSrc: require("../assets/n-5.jpeg"),
     price: "$35",
     color: "Black",
   },
   {
-    id: 3,
+    id: 6,
     name: "Basic Tee",
     href: "#",
-    imageSrc:
-      "https://media.nft.crypto.com/45f919c0-975e-4cde-9760-e4f7c54772f5/original.jpeg?d=sm-cover",
-    imageAlt: "Front of men's Basic Tee in black.",
+    imageSrc: require("../assets/n-6.jpeg"),
     price: "$35",
     color: "Black",
   },
   {
-    id: 3,
+    id: 7,
     name: "Basic Tee",
     href: "#",
-    imageSrc:
-      "https://media.nft.crypto.com/45f919c0-975e-4cde-9760-e4f7c54772f5/original.jpeg?d=sm-cover",
-    imageAlt: "Front of men's Basic Tee in black.",
+    imageSrc: require("../assets/n-7.jpeg"),
     price: "$35",
     color: "Black",
   },
   {
-    id: 3,
+    id: 8,
     name: "Basic Tee",
     href: "#",
-    imageSrc:
-      "https://media.nft.crypto.com/45f919c0-975e-4cde-9760-e4f7c54772f5/original.jpeg?d=sm-cover",
-    imageAlt: "Front of men's Basic Tee in black.",
+    imageSrc: require("../assets/n-8.jpeg"),
     price: "$35",
     color: "Black",
   },
   {
-    id: 3,
+    id: 9,
     name: "Basic Tee",
     href: "#",
-    imageSrc:
-      "https://media.nft.crypto.com/45f919c0-975e-4cde-9760-e4f7c54772f5/original.jpeg?d=sm-cover",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 3,
-    name: "Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://media.nft.crypto.com/45f919c0-975e-4cde-9760-e4f7c54772f5/original.jpeg?d=sm-cover",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 3,
-    name: "Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://media.nft.crypto.com/45f919c0-975e-4cde-9760-e4f7c54772f5/original.jpeg?d=sm-cover",
-    imageAlt: "Front of men's Basic Tee in black.",
+    imageSrc: require("../assets/n-9.jpeg"),
     price: "$35",
     color: "Black",
   },
@@ -334,9 +301,9 @@ export default function ProductList() {
 
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-red-200 pb-6 pt-24">
-            <h1 className="text-4xl font-bold tracking-tight text-red-900">
+            {/* <h1 className="text-4xl font-bold tracking-tight text-red-900">
               All Products
-            </h1>
+            </h1> */}
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">

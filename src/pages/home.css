@@ -1,28 +1,36 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:200');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;0,900;1,500;1,700;1,900&display=swap');
 .home{
+ margin-top: -50px;
     height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color: white;
+    font-family: 'Raleway';
+    font-size: 2.5rem;
+}
+
+.slide-box{
+  box-shadow: rgba(254, 28, 28, 0.993) 0px 0px 70px 3px;
 }
 
 
-
-#box {
+/* #box {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 90%;
-  height: 80vh;
+  min-height: 90vh;
   color: white;
   font-family: 'Raleway';
   font-size: 2.5rem;
-}
-.gradient-border {
+} */
+/* .gradient-border {
   --borderWidth: 3px;
   background: #1D1F20;
   position: relative;
@@ -33,14 +41,14 @@
   position: absolute;
   top: calc(-1 * var(--borderWidth));
   left: calc(-1 * var(--borderWidth));
-  height: calc(100% + var(--borderWidth) * 2);
-  width: calc(100% + var(--borderWidth) * 2);
+  height: calc(100% + var(--borderWidth) * 2); */
+  /* width: calc(100% + var(--borderWidth) * 2);
   background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
   border-radius: calc(2 * var(--borderWidth));
   z-index: -1;
   animation: animatedgradient 3s ease alternate infinite;
   background-size: 300% 300%;
-}
+} */
 
 
 @keyframes animatedgradient {
@@ -55,13 +63,18 @@
 	}
 }
 
-
+/* .gre-h{
+  padding-left: 450px;
+  padding-right: 450px;
+} */
 
 
 .gradient-heading {
-  font-size: 80px;
-  font-weight: 700;
-  line-height: 120px;
+  font-family: 'Roboto', sans-serif;
+
+  font-size: 60px;
+  font-weight: bold;
+  line-height: 70px;
   text-align: center;
   background: -o-linear-gradient(45deg,#ff8a00,#e52e71,#00eaff,#71e42e);
   background: linear-gradient(45deg,#ff8a00,#e52e71,#00d9ff,#2fcb92);
@@ -93,4 +106,109 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+
+.carousel-indicators {
+  bottom: 14%;
+}
+.carousel-indicators li {
+  display: inline-block;
+  text-indent: 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background-color: #666;
+  box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
+}
+.carousel-indicators .active {
+  background-color: #fff;
+}
+/*
+inspired from https://codepen.io/Rowno/pen/Afykb 
+*/
+.carousel-fade .carousel-inner .item {
+  opacity: 0;
+  transition-property: opacity;
+}
+.carousel-fade .carousel-inner .active {
+  opacity: 1;
+}
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+  opacity: 1;
+}
+.carousel-fade .carousel-control {
+  z-index: 2;
+}
+/*
+WHAT IS NEW IN 3.3: "Added transforms to improve carousel performance in modern browsers."
+now override the 3.3 new styles for modern browsers & apply opacity
+*/
+@media all and (transform-3d), (-webkit-transform-3d) {
+    .carousel-fade .carousel-inner > .item.next,
+    .carousel-fade .carousel-inner > .item.active.right {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.prev,
+    .carousel-fade .carousel-inner > .item.active.left {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.next.left,
+    .carousel-fade .carousel-inner > .item.prev.right,
+    .carousel-fade .carousel-inner > .item.active {
+      opacity: 1;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+}
+.carousel-caption {
+  font-family: "Open Sans", sans-serif;
+  font-size: 2em;
+  font-weight: 300;
+  width: 100%;
+  position: absolute;
+  bottom: -12px;
+  left: -30%;
+  color: white;
+  text-decoration: none;
+  text-shadow: 2px 2px #000000;
+  animation-delay: 1.5s;
+  animation-duration: 1.5s;
+}
+.btn-teo-caption {
+  width: 155px;
+  border-radius: 500px !IMPORTANT;
+  border: 3px solid #106470;
+  margin-top: 6px;
+  margin-right: 21%;
+  background-color: #106470;
+  font-weight: bold;
+  color: white;
+}
+.btn-teo-caption:hover {
+  background-color: white;
+	color: #106470;
+  border: 3px solid #106470;
+	transition-property: ease 1s;
+}
+#caption1-button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 2em;
+  font-weight: 300;
+  position: absolute;
+  bottom: -10px;
+  left: 40%;
+  color: black;
+  text-decoration: none;
 }

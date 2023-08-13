@@ -1,0 +1,46 @@
+.connect{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Raleway';
+    font-size: 4.5rem;
+}
+.wallet{
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    width: 70%;
+    box-shadow: rgba(7, 1, 1, 0.993) 0px 0px 70px 3px;
+}
+.wallets{
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.w1{
+    display: flex;
+    box-shadow: rgba(7, 1, 1, 0.993) 0px 0px 60px 3px;
+    height: 40%;
+    width: 75%;
+}
+.w1:hover{
+    box-shadow: rgba(200, 94, 48, 0.993) 0px 0px 50px 3px;
+}
+.c1{
+    width: 100%;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.image{
+   height: 100%;
+   width: 30%;
+}

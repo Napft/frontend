@@ -1,21 +1,33 @@
+import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
+import "./navbar.css"
 
 const navigation = [
   { name: "Home", href: "/", current: false },
   { name: "Market Place", href: "/marketplace", current: false },
   { name: "About Us", href: "/", current: false },
-  { name: "Personal Page", href: "/", current: false },
+  { name: "Create", href: "/", current: false },
 ];
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+
+
 export default function Navbar() {
+  const nav = useNavigate();
+
+
   return (
-    <Disclosure as="nav" className="bg-gray-900 z-50 sticky justify-between top-0">
+    <Disclosure
+      as="nav"
+      className="navbar bg-gray-900 z-50 sticky justify-between top-0"
+    >
       {({ open }) => (
         <>
           {/* max-w-7xl */}
@@ -34,13 +46,12 @@ export default function Navbar() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                
-                  <img
-                    className="h-24 w-24"
-                    src="https://i.ibb.co/DQqRvCV/logo.png"
-                    alt="Your Company"
-                  />
-              
+                <img
+                  className="h-24 w-24"
+                  src="https://i.ibb.co/DQqRvCV/logo.png"
+                  alt="Your Company"
+                />
+
                 <div className="hidden  sm:ml-64 mt-6 sm:block">
                   <div className="flex space-x-20">
                     {navigation.map((item) => (
@@ -50,7 +61,7 @@ export default function Navbar() {
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            : "text-white hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-xl font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -63,8 +74,9 @@ export default function Navbar() {
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
+                  onClick={()=>nav("/connectwallet")}
                   type="button"
-                  className="relative bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded-xl"
+                  className="relative bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded-xl"
                 >
                   Connect Wallet
                 </button>
