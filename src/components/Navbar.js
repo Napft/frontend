@@ -8,8 +8,8 @@ import "./navbar.css"
 const navigation = [
   { name: "Home", href: "/", current: false },
   { name: "Market Place", href: "/marketplace", current: false },
-  { name: "About Us", href: "/", current: false },
-  { name: "Create", href: "/", current: false },
+  { name: "About Us", href: "/nftpage", current: false },
+  { name: "Create", href: "/createNft", current: false },
 ];
 
 
@@ -74,7 +74,7 @@ export default function Navbar() {
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
-                  onClick={()=>nav("/connectwallet")}
+                  // onClick={()=>nav("/connectwallet")}
                   type="button"
                   className="relative bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded-xl"
                 >

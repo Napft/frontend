@@ -187,7 +187,7 @@ export default function ProductList() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   return (
-    <div className="bg-gray-900">
+    <div className="bg-[rgb(14,13,13)]">
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -205,7 +205,7 @@ export default function ProductList() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-gray-800 bg-opacity-25" />
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
             </Transition.Child>
 
             <div className="fixed inset-0 z-40 flex">
@@ -225,7 +225,7 @@ export default function ProductList() {
                     </h2>
                     <button
                       type="button"
-                      className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-gray-800 p-2 text-red-400"
+                      className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-black p-2 text-red-400"
                       onClick={() => setMobileFiltersOpen(false)}
                     >
                       <span className="sr-only">Close menu</span>
@@ -234,7 +234,7 @@ export default function ProductList() {
                   </div>
 
                   {/* Filters */}
-                  <form className="mt-4 border-t border-red-200">
+                  {/* <form className="mt-4 border-t border-red-200">
                     {filters.map((section) => (
                       <Disclosure
                         as="div"
@@ -292,7 +292,7 @@ export default function ProductList() {
                         )}
                       </Disclosure>
                     ))}
-                  </form>
+                  </form> */}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -376,7 +376,7 @@ export default function ProductList() {
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
               {/* Filters */}
-              <form className="hidden lg:block">
+              {/* <form className="hidden lg:block">
                 {filters.map((section) => (
                   <Disclosure
                     as="div"
@@ -434,17 +434,20 @@ export default function ProductList() {
                     )}
                   </Disclosure>
                 ))}
-              </form>
+              </form> */}
 
               {/* Product grid */}
-              <div className="lg:col-span-3">
+              <div className="  lg:col-span-9">
                 {/* This is our products list  */}
-                <div className="bg-gray-800">
-                  <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
-                    <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+                <div className="bg-gray-900 ">
+                  <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-54">
+                    <div className="mt-6 grid  grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
                       {products.map((product) => (
-                        <div key={product.id} className="group relative">
-                          <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-red-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                        <div
+                          key={product.id}
+                          className="group mt-10 rounded-lg bg-gray-800 p-10 relative"
+                        >
+                          <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md  lg:aspect-none group-hover:opacity-75 lg:h-80">
                             <img
                               src={product.imageSrc}
                               alt={product.imageAlt}

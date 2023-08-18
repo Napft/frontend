@@ -69,7 +69,7 @@ function Homepage() {
       <br />
 
       {/* slide animation using tailwind */}
-      <div className="slide-box max-w-[1550px] h-[500px] w-full mt-5  relative group">
+      <div className="slide-box max-w-[1450px] h-[500px] w-full mt-5  relative group">
         <div
           style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
           className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
