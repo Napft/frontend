@@ -4,6 +4,8 @@
 @import 'tailwindcss/utilities';
 
 body {
+  
+  background: #1D1F20; 
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
